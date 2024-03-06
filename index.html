@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      name="viewport"
+      content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width"
+    />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+  </head>
+  <body style="margin: 0">
+    <div id="__app"></div>
+    <script type="module">
+      import {
+        UI,
+        defaultMapboxPlugins,
+      } from 'https://unpkg.com/@fplan/bundle@1.0.17/dist/browser/index.js';
+      const root = ReactDOM.createRoot(document.getElementById('__app'));
+      const mapboxAccessToken =
+        'pk.eyJ1IjoiZGlnaXRhbC14LTIwMjIiLCJhIjoiY2w1Y2xpeW16MGVjbDNwcG4yeWNkdDJqYyJ9.8IMQwccvToCwcdJ_KFw0Zw';
+      const svg = './fp.svg';
+      const entities = './entities.json';
+      const mapboxLayers = './layers.json';
+      const types = [
+        { id: 'booth', name: 'Booths', icon: 'icon-user' },
+        { id: 'venue', name: 'Venues', icon: 'icon-marker-pin' },
+      ];
+      root.render(
+        React.createElement(UI, {
+          plugins: defaultMapboxPlugins(),
+          mapboxAccessToken,
+          svg,
+          entities,
+          types,
+          mapboxLayers,
+          mapboxImages: {},
+          levels: ['1', '2', '3', 'EH'],
+          initialLevel: '1',
+        })
+      );
+    </script>
+  </body>
+</html>
